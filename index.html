@@ -3,218 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Butterfly High | Modern Indian Restaurant & Co-Working BKC</title>
-    <meta name="description" content="Experience Butterfly High in BKC, Mumbai. A premium modern Indian restaurant and co-working space serving Kolhapuri Fried Bao, Rozali Chicken, and more.">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Butterfly High BKC | Premium Modern Indian Restaurant & Bar Mumbai</title>
+    <meta name="description" content="Official site of Butterfly High, BKC. Experience premium modern Indian fusion, signature cocktails, and vibrant co-working spaces. Open until 1:30 AM.">
+    <meta name="keywords" content="Butterfly High BKC, Modern Indian Restaurant Mumbai, Best Bar Bandra East, Co-working Space BKC, Chicken Ghee Roast Mumbai">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --rust: #a0522d;
-            --dark-rust: #7b3f28;
-            --charcoal: #121212;
-            --slate: #242424;
-            --gold: #c5a059;
-            --white: #f5f5f5;
+            --rust: #a0522d; /* Primary Rust */
+            --rust-light: #bc6c47;
+            --charcoal: #0f0f0f; /* Deep Black/Gray */
+            --slate: #1e1e1e; /* Card Background */
+            --gold: #d4af37; /* Accent Gold */
+            --text-gray: #b0b0b0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--charcoal);
-            color: var(--white);
-            line-height: 1.6;
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--gold); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; margin: 0; }
 
-        /* Premium Texture Background */
-        .premium-bg {
-            background: linear-gradient(135deg, rgba(18,18,18,1) 0%, rgba(36,36,36,1) 100%);
-            border-bottom: 2px solid var(--dark-rust);
-        }
-
+        /* --- Header & Premium Toggle Menu --- */
         header {
+            position: fixed;
+            top: 0; width: 100%;
             padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(18,18,18,0.95);
-            position: sticky;
-            top: 0;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(160, 82, 45, 0.3);
         }
 
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+        .logo h2 { color: var(--gold); letter-spacing: 2px; font-size: 1.5rem; }
+
+        .menu-toggle-btn {
+            background: var(--rust);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Montserrat';
+            font-weight: 700;
+            cursor: pointer;
             letter-spacing: 1px;
-            transition: 0.3s;
+            transition: var(--transition);
         }
 
-        .nav-links a:hover { color: var(--rust); }
+        .menu-toggle-btn:hover { background: var(--gold); color: var(--charcoal); }
 
+        /* Fullscreen Overlay Menu */
+        #navOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 15, 15, 0.98);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        #navOverlay a {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: var(--transition);
+        }
+
+        #navOverlay a:hover { color: var(--rust); transform: scale(1.1); }
+
+        .close-btn { position: absolute; top: 30px; right: 5%; font-size: 2rem; cursor: pointer; color: var(--gold); }
+
+        /* --- Hero Section --- */
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80') center/cover;
-            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550966841-3ee7adac1661?q=80&w=2070') center/cover;
+            padding: 0 10%;
         }
 
-        .hero h1 { font-size: 4rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; max-width: 700px; color: #ccc; }
+        .hero h1 { font-size: 5rem; color: var(--white); margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; max-width: 800px; color: var(--text-gray); margin-bottom: 30px; }
 
-        .btn {
-            background-color: var(--rust);
+        /* --- Global Buttons --- */
+        .btn-rust {
+            background: var(--rust);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 40px;
             text-decoration: none;
-            border-radius: 2px;
-            font-weight: bold;
+            font-weight: 700;
             display: inline-block;
-            margin-top: 20px;
-            transition: 0.4s;
-            border: 1px solid transparent;
+            transition: var(--transition);
+            border: 1px solid var(--rust);
         }
+        .btn-rust:hover { background: transparent; color: var(--rust); border-color: var(--rust); }
 
-        .btn:hover { background: transparent; border: 1px solid var(--rust); color: var(--rust); }
+        /* --- Preview Section --- */
+        .section { padding: 100px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 3rem; color: var(--gold); }
+        .section-header .rust-line { width: 80px; height: 3px; background: var(--rust); margin: 20px auto; }
 
-        /* Menu Preview Section */
-        .section { padding: 80px 10%; }
-        
-        .menu-grid {
+        .preview-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .menu-item {
+        .preview-card {
             background: var(--slate);
-            padding: 20px;
-            border-left: 4px solid var(--rust);
-            transition: transform 0.3s;
+            padding: 40px;
+            border: 1px solid rgba(160, 82, 45, 0.1);
+            position: relative;
+            transition: var(--transition);
+            overflow: hidden;
         }
 
-        .menu-item:hover { transform: translateY(-5px); background: #2a2a2a; }
+        .preview-card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--rust);
+        }
 
-        .menu-item h3 { margin-top: 0; font-size: 1.4rem; }
-        .menu-item span { color: var(--gold); font-weight: bold; }
+        .preview-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--rust);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-        .footer {
-            background: #0a0a0a;
-            padding: 50px 10%;
-            border-top: 1px solid var(--dark-rust);
+        .preview-card h3 { margin-bottom: 15px; color: var(--white); font-size: 1.8rem; }
+        .preview-card p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; }
+
+        /* --- Footer --- */
+        footer {
+            background: #050505;
+            padding: 80px 8% 40px;
+            border-top: 2px solid var(--rust);
+        }
+
+        .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            gap: 50px;
         }
 
-        .footer h4 { color: var(--rust); text-transform: uppercase; }
+        .footer-col h4 { color: var(--gold); margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; }
+        .footer-col p, .footer-col a { color: var(--text-gray); text-decoration: none; display: block; margin-bottom: 12px; }
+        .footer-col a:hover { color: var(--rust); }
 
-        .tag-premium {
-            background: var(--dark-rust);
-            padding: 4px 10px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: inline-block;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            header { padding: 15px 5%; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo"><h2>BUTTERFLY HIGH</h2></div>
-    <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="menu-details.html" target="_blank">Full Menu</a>
-        <a href="reservations.html" target="_blank">Book Table</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <div id="navOverlay">
+        <span class="close-btn" onclick="toggleMenu()">×</span>
+        <a href="#home" onclick="toggleMenu()">Home</a>
+        <a href="menu-starters.html" target="_blank">Starters & Baos</a>
+        <a href="menu-mains.html" target="_blank">Signature Mains</a>
+        <a href="menu-drinks.html" target="_blank">Craft Cocktails</a>
+        <a href="coworking.html" target="_blank">Co-Working Space</a>
+        <a href="contact-details.html" target="_blank">Find Us (Contact)</a>
+    </div>
 
-<section class="hero" id="home">
-    <div class="tag-premium">Premium Dining & Co-working</div>
-    <h1>Modern India, Elevated.</h1>
-    <p>Vibrant restaurant & bar serving Indian fare with a twist. The perfect blend of a workspace by day and a high-energy lounge by night.</p>
-    <div>
-        <a href="https://wa.me/919152460022" class="btn">Order via WhatsApp</a>
-        <a href="#menu-preview" class="btn" style="background:var(--slate); margin-left:10px;">View Menu Teaser</a>
-    </div>
-</section>
+    <header>
+        <div class="logo"><h2>BUTTERFLY HIGH</h2></div>
+        <button class="menu-toggle-btn" onclick="toggleMenu()">MENU ☰</button>
+    </header>
 
-<section class="section premium-bg" id="menu-preview">
-    <center>
-        <h2>Signature Highlights</h2>
-        <p>A glimpse of our most loved modern Indian creations</p>
-    </center>
-    
-    <div class="menu-grid">
-        <div class="menu-item">
-            <h3>Kolhapuri Spiced Fried Bao</h3>
-            <p>Popular fusion bao with a spicy Maharashtrian kick.</p>
-            <a href="menu-bao.html" target="_blank" style="color:var(--gold); font-size: 0.8rem;">Details →</a>
+    <section class="hero" id="home">
+        <h1>Modern India Elevated.</h1>
+        <p>A vibrant restaurant & bar in the heart of BKC. Transitioning from a co-working sanctuary by day to a high-octane social hub by night.</p>
+        <div class="btn-group">
+            <a href="reservations.html" target="_blank" class="btn-rust">RESERVE A TABLE</a>
         </div>
-        <div class="menu-item">
-            <h3>Rozali Chicken</h3>
-            <p>Tender chicken pieces with a secret premium spice blend.</p>
-            <a href="menu-chicken.html" target="_blank" style="color:var(--gold); font-size: 0.8rem;">Details →</a>
-        </div>
-        <div class="menu-item">
-            <h3>Activated Charcoal Naan</h3>
-            <p>Our signature gothic-style traditional bread.</p>
-            <a href="menu-breads.html" target="_blank" style="color:var(--gold); font-size: 0.8rem;">Details →</a>
-        </div>
-        <div class="menu-item">
-            <h3>Kaffir Lime Bull</h3>
-            <p>Refreshing signature cocktail with a citrus punch.</p>
-            <a href="menu-drinks.html" target="_blank" style="color:var(--gold); font-size: 0.8rem;">Details →</a>
-        </div>
-    </div>
-    
-    <center style="margin-top:50px;">
-        <a href="full-menu.html" target="_blank" class="btn">Explore All Menu Categories</a>
-    </center>
-</section>
+    </section>
 
-<section class="section" id="contact" style="background:#1a1a1a;">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
-        <div style="flex: 1; min-width: 300px;">
-            <h2>Visit Us in BKC</h2>
-            <p>Unit no. 4, Ground Floor, Jet Airways, Godrej BKC,<br> 
-            Next to MCA Bandra Club, G Block BKC, Bandra East, <br>
-            Mumbai, Maharashtra 400051</p>
-            <p><strong>Hours:</strong> Open daily until 1:30 AM</p>
+    <section class="section">
+        <div class="section-header">
+            <h2>The Culinary Preview</h2>
+            <div class="rust-line"></div>
+            <p>Signature tastes of our premium fusion menu</p>
         </div>
-        <div style="flex: 1; min-width: 300px; text-align: right;">
-            <a href="https://www.google.com/maps" target="_blank" class="btn">Get Directions</a>
+
+        <div class="preview-grid">
+            <div class="preview-card">
+                <h3>Fusion Baos</h3>
+                <p>Featuring our famous Kolhapuri Spiced Crumbed Fried Bao. A Maharashtrian soul in a global body.</p>
+                <a href="menu-starters.html" target="_blank" style="color:var(--gold); font-weight:700; text-decoration:none;">PREVIEW CATEGORY →</a>
+            </div>
+            <div class="preview-card">
+                <h3>Coastal Mains</h3>
+                <p>Authentic Chicken Ghee Roast and Dal Makhani cooked to perfection with artisanal ghee.</p>
+                <a href="menu-mains.html" target="_blank" style="color:var(--gold); font-weight:700; text-decoration:none;">PREVIEW CATEGORY →</a>
+            </div>
+            <div class="preview-card">
+                <h3>Liquid Luxury</h3>
+                <p>The Kaffir Lime Bull and Kingfisher Premium—curated for the sophisticated palate.</p>
+                <a href="menu-drinks.html" target="_blank" style="color:var(--gold); font-weight:700; text-decoration:none;">PREVIEW CATEGORY →</a>
+            </div>
         </div>
-    </div>
-</section>
 
-<footer class="footer">
-    <div>
-        <h4>Butterfly High</h4>
-        <p>The premier destination for modern Indian cuisine and corporate networking in Mumbai.</p>
-    </div>
-    <div>
-        <h4>Reservations</h4>
-        <p>Call: 091524 60022</p>
-        <p>Find us on Zomato & Swiggy</p>
-    </div>
-    <div>
-        <h4>Quick Links</h4>
-        <p><a href="offers.html" target="_blank" style="color:var(--white);">Dining Offers</a></p>
-        <p><a href="cowork.html" target="_blank" style="color:var(--white);">Co-Working Details</a></p>
-    </div>
-</footer>
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="full-menu.html" target="_blank" class="btn-rust">VIEW ALL MENU CATEGORIES</a>
+        </div>
+    </section>
 
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Butterfly High</h4>
+                <p>Unit no. 4, Ground Floor, Jet Airways, Godrej BKC, Bandra East, Mumbai 400051.</p>
+                <a href="https://wa.me/919152460022">WhatsApp: +91 91524 60022</a>
+            </div>
+            <div class="footer-col">
+                <h4>Experience</h4>
+                <a href="menu-details.html" target="_blank">Menu Highlights</a>
+                <a href="coworking.html" target="_blank">Co-Working Space</a>
+                <a href="contact-details.html" target="_blank">Contact & Directions</a>
+            </div>
+            <div class="footer-col">
+                <h4>Partner Apps</h4>
+                <a href="https://www.zomato.com" target="_blank">Order on Zomato</a>
+                <a href="https://www.swiggy.com" target="_blank">Order on Swiggy</a>
+                <a href="https://www.eazydiner.com" target="_blank">Book via EazyDiner</a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; color: #444; border-top: 1px solid #111; padding-top: 20px;">
+            <p>&copy; 2026 Butterfly High. All Rights Reserved. Designed for Luxury.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const overlay = document.getElementById('navOverlay');
+            if (overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+            } else {
+                overlay.style.display = 'flex';
+            }
+        }
+    </script>
 </body>
 </html>
+
